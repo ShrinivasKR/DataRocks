@@ -1,4 +1,8 @@
 // config/db.js
 module.exports = {
-    url: 'mongodb://localhost/stencil-dev'
+    server: 'IS-HAY04.ischool.uw.edu',
+    database: 'DataRocks',
+    user: 'INFO445',
+    password: 'GoHuskies!',
+    port: 1433
 }

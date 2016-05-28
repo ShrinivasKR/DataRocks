@@ -1,12 +1,6 @@
 var sql = require('mssql');
 
-var config = {
-    server: 'IS-HAY04.ischool.uw.edu',
-    database: 'DataRocks',
-    user: 'INFO445',
-    password: 'GoHuskies!',
-    port: 1433
-};
+var config = require('./config.js');
 
 function query() {
     var dbConn = new sql.Connection(config);

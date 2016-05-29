@@ -1,0 +1,24 @@
+{
+  "name": "nodesqlserver",
+  "description": "",
+  "authors": [
+    "Shrinivas Kopparam Ramanath <shrini@uw.edu>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3",
+    "angular": "^1.5.6",
+    "angular-route": "^1.5.6",
+    "animate.css": "^3.5.1"
+  }
+}

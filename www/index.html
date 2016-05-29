@@ -1,15 +1,47 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Starter MEAN Single Page Application</title>
+    <base href="/">
 
+    <title>Indoor Motorcycle Climbing Arena!</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- custom styles -->
+
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/MotorcycleCtrl.js"></script>
+    <script src="js/services/MotorcycleService.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
 </head>
 
-<body>
+<body ng-app="dataRocksApp" ng-controller="MotorcycleController">
+    <div class="container">
 
-    we did it!
+        <!-- HEADER -->
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Stencil: Node and Angular</a>
+            </div>
+
+            <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+            <ul class="nav navbar-nav">
+                <li><a href="/motorcycles">Motorcycles</a></li>
+            </ul>
+        </nav>
+
+        <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view></div>
+
+    </div>
 </body>
-
 </html>

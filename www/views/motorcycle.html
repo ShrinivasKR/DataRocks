@@ -2,58 +2,66 @@
 
 <div class="jumbotron text-center">
     <h1>Motorcycles</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Current Motorcycles</h2>
+            <table class="center-table">
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>CCs</th>
+                    <th>ABS</th>
+                    <th>Size</th>
+                    <th>Seats</th>
+                </tr>
+                <tr ng-repeat="motorcycle in motorcycles">
+                    <td>{{ motorcycle.BrandName }}</td>
+                    <td>{{ motorcycle.ModelName }}</td>
+                    <td>{{ motorcycle.CCs }}</td>
+                    <td>{{ motorcycle.ABS == 1 ? "Yes":"No"}}</td>
+                    <td>{{ motorcycle.SizeName }}</td>
+                    <td>{{ motorcycle.SeatingCapacity }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h2>Add new Motorcycle</h2>
 
-    <table class="center-table">
-        <tr>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>CCs</th>
-            <th>ABS</th>
-            <th>Size</th>
-            <th>Seats</th>
-        </tr>
-        <tr ng-repeat="motorcycle in motorcycles">
-            <td>{{ motorcycle.BrandName }}</td>
-            <td>{{ motorcycle.ModelName }}</td>
-            <td>{{ motorcycle.CCs }}</td>
-            <td>{{ motorcycle.ABS == 1 ? "Yes":"No"}}</td>
-            <td>{{ motorcycle.SizeName }}</td>
-            <td>{{ motorcycle.SeatingCapacity }}</td>
-        </tr>
-    </table>
+            <autocomplete ng-model="brand" data="brands" id="brand" attr-placeholder="Enter Brand" click-activation="true"></autocomplete>
+            <autocomplete ng-model="model" data="models" attr-placeholder="Enter Model" click-activation="true"></autocomplete>
+            <autocomplete ng-model="size" data="sizes" attr-placeholder="Enter Size" click-activation="true"></autocomplete>
+            <autocomplete ng-model="purpose" data="purposes" attr-placeholder="Enter Purpose" click-activation="true"></autocomplete>
 
-    <autocomplete ng-model="brand" data="brands" id="brand" attr-placeholder="Enter Brand" click-activation="true"></autocomplete>
-    <autocomplete ng-model="model" data="models" attr-placeholder="Enter Model" click-activation="true"></autocomplete>
-    <autocomplete ng-model="size" data="sizes" attr-placeholder="Enter Size" click-activation="true"></autocomplete>
-    <autocomplete ng-model="purpose" data="purposes" attr-placeholder="Enter Purpose" click-activation="true"></autocomplete>
+            <input type="number" ng-model="price" min="0" placeholder="Rental Price"></br>
+            <input type="number" ng-model="CCs" min="0" placeholder="CCs"></br>
 
-    <input type="number" ng-model="price" min="0" placeholder="Rental Price"></br>
-    <input type="number" ng-model="CCs" min="0" placeholder="CCs"></br>
-
-    <h3>ABS</h3>
-    <label>
+            <h4>ABS</h4>
+            <label>
         <input type="radio" ng-model="abs" value="1">
         Yes
     </label><br/>
 
-    <label>
+            <label>
         <input type="radio" ng-model="abs" value="0">
         No
     </label><br/>
 
-    <h3>Seating Capacity</h3>
-    <label>
+            <h4>Seating Capacity</h4>
+            <label>
         <input type="radio" ng-model="capacity" value="1">
         1
     </label><br/>
 
-    <label>
-        <input type="radio" ng-model="caoacity" value="2">
+            <label>
+        <input type="radio" ng-model="capacity" value="2">
         2
     </label><br/>
 
-    <button class="btn btn-primary" ng-disabled="!brand || !model || !model || !purpose || !price || !CCs || !abs || !capacity"
-        ng-click="newMotorcycle()">
+            <button class="btn btn-primary" ng-disabled="!brand || !model || !model || !purpose || !price || !CCs || !abs || !capacity"
+                ng-click="newMotorcycle()">
             Add Motorcycyle
     </button>
+        </div>
+
+    </div>
 </div>

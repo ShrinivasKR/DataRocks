@@ -52,10 +52,10 @@ angular.module('MotorcycleCtrl', []).controller('MotorcycleController', function
             ABS: $scope.abs
         }
 
-
         Motorcycle.create(data).
             success(function (data, status, headers, config) {
                 console.log('added new motorcycle');
+                $scope.getMotorcycles();
             })
             .error(function (data, status, header, config) {
                 console.log('failed to add motorcycle');

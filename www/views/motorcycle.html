@@ -3,9 +3,29 @@
 <div class="jumbotron text-center">
     <h1>Motorcycles</h1>
 
-    <div class="list-group">
-        <!-- Links to detail level -->
-        <a ng-repeat="motorcycle in motorcycles" class="list-group-item">
-            {{ motorcycle }}</a><br>
-    </div>
+    <table class="center-table">
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>CCs</th>
+            <th>ABS</th>
+            <th>Size</th>
+            <th>Seats</th>
+        </tr>
+        <tr ng-repeat="motorcycle in motorcycles">
+            <td>{{ motorcycle.BrandName }}</td>
+            <td>{{ motorcycle.ModelName }}</td>
+            <td>{{ motorcycle.CCs }}</td>
+            <td>{{ motorcycle.ABS == 1 ? "Yes":"No"}}</td>
+            <td>{{ motorcycle.SizeName }}</td>
+            <td>{{ motorcycle.SeatingCapacity }}</td>
+        </tr>
+    </table>
+    
+    {{brands}}
+    <autocomplete ng-model="brand" data="brands"></autocomplete>
+    <autocomplete ng-model="model" data="models"></autocomplete>
+    <autocomplete ng-model="size" data="sizes"></autocomplete>
+    <autocomplete ng-model="purpose" data="purposes"></autocomplete>
+
 </div>

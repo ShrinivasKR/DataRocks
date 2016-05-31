@@ -1,1 +1,1 @@
-angular.module('dataRocksApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'MotorcycleCtrl', 'MotorcycleService']);
+angular.module('dataRocksApp', ['ngRoute', 'appRoutes', 'autocomplete', 'MainCtrl', 'MotorcycleCtrl', 'MotorcycleService']);

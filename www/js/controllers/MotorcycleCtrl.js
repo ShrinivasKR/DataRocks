@@ -1,6 +1,12 @@
 // public/js/controllers/NerdCtrl.js
-angular.module('MotorcycleCtrl', []).controller('MotorcycleController', function($scope) {
+angular.module('MotorcycleCtrl', []).controller('MotorcycleController', function ($scope, Motorcycle) {
 
-    $scope.tagline = 'Nothing beats a pocket protector!';
-
+    Motorcycle.get().
+        success(function (data, status, headers, config) {
+            $scope.motorcycles = data;
+            console.log(data);
+        }).
+        error(function (data, status, headers, config) {
+            // log error
+        });
 });

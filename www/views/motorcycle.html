@@ -1,7 +1,11 @@
 <!-- www/views/motorcycle.html -->
 
 <div class="jumbotron text-center">
-    <h1>Nerds and Proud</h1>
+    <h1>Motorcycles</h1>
 
-    <p>{{ tagline }}</p>
+    <div class="list-group">
+        <!-- Links to detail level -->
+        <a ng-repeat="motorcycle in motorcycles" class="list-group-item">
+            {{ motorcycle }}</a><br>
+    </div>
 </div>

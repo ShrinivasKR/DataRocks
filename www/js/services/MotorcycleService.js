@@ -1,5 +1,5 @@
 // www/js/services/MotorcycleService.js
-angular.module('MotorcycleService', []).factory(['$http', function ($http) {
+angular.module('MotorcycleService', []).factory('Motorcycle', ['$http', function ($http) {
 
     return {
         // call to get all motorcycles

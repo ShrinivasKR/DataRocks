@@ -5,8 +5,6 @@ var config = require('../config/db.js');
 
 // connect to our mssql database 
 var sql = require('mssql');
-var dbConn = new sql.Connection(config);
-
 module.exports = function (app) {
 
     // server routes ===========================================================
@@ -17,41 +15,70 @@ module.exports = function (app) {
     // route to handle creating goes here (app.post)
     // route to handle delete goes here (app.delete)
 
-    app.get('/api/motorcycles', function (req, res) {
+    app.get('/api/inventory', function (req, res) {
+        var dbConn = new sql.Connection(config);
         dbConn.connect().then(function () {
             var request = new sql.Request(dbConn);
             request.query("select * from Inventory").then(function (recordSet) {
                 console.log(recordSet);
                 dbConn.close();
+                res.json(recordSet);
             }).catch(function (err) {
                 console.log(err);
                 dbConn.close();
+                res.send(err);
             });
         }).catch(function (err) {
             console.log(err);
+            res.send(err);
         });
 
     });
-
-
-    function executeStoredProc() {
+    
+    app.get('/api/motorcycles', function (req, res) {
+        var dbConn = new sql.Connection(config);
         dbConn.connect().then(function () {
-
             var request = new sql.Request(dbConn);
-            request.input('NumRows', sql.Int, 1)
+            request.query("uspGetMotorcycles").then(function (recordSet) {
+                console.log(recordSet);
+                dbConn.close();
+                res.json(recordSet);
+            }).catch(function (err) {
+                console.log(err);
+                dbConn.close();
+                res.send(err);
+            });
+        }).catch(function (err) {
+            console.log(err);
+            res.send(err);
+        });
+
+    });
+    
+    app.post('/api/incidents', function (req, res) {
+        var numRows = req.body.numRows;
+        var dbConn = new sql.Connection(config);
+        dbConn.connect().then(function () {
+            var request = new sql.Request(dbConn);
+            request.input('NumRows', sql.Int, numRows)
                 .execute("uspPopulateIncidents").then(function (recordSet) {
                     console.log(recordSet);
                     dbConn.close();
+                    res.json(recordSet);
                 }).catch(function (err) {
                     console.log(err);
                     dbConn.close();
+                    res.send(err);
                 });
         }).catch(function (err) {
             console.log(err);
+            res.send(err);
         });
-    }
+    });
+
 
     function insertRow() {
+        var dbConn = new sql.Connection(config);
         dbConn.connect().then(function () {
             var transaction = new sql.Transaction(dbConn);
             transaction.begin().then(function () {
@@ -80,7 +107,6 @@ module.exports = function (app) {
     }
 
 
-    executeStoredProc();
     // executeStoredProc();
     // insertRow();
     // frontend routes =========================================================

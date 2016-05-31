@@ -68,11 +68,11 @@ module.exports = function (app) {
         var dbConn = new sql.Connection(config);
         dbConn.connect().then(function () {
             var request = new sql.Request(dbConn);
-            request.input('rentalPrice', sql.Numeric(7, 2), rentalPrice);
-            request.input('sizeName', sql.VarChar(30), sizeName);
-            request.input('brandName', sql.VarChar(30), brandName);
-            request.input('purposeName', sql.VarChar(30), purposeName);
-            request.input('modelName', sql.VarChar(30), modelName);
+            request.input('RentalPrice', sql.Numeric(7, 2), rentalPrice);
+            request.input('SizeName', sql.VarChar(30), sizeName);
+            request.input('BrandName', sql.VarChar(30), brandName);
+            request.input('PurposeName', sql.VarChar(30), purposeName);
+            request.input('ModelName', sql.VarChar(30), modelName);
             request.input('CCs', sql.Int, CCs);
             request.input('SeatingCapacity', sql.TinyInt, SeatingCapacity);
             request.input('ABS', sql.TinyInt, ABS);

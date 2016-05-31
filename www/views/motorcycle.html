@@ -21,10 +21,39 @@
             <td>{{ motorcycle.SeatingCapacity }}</td>
         </tr>
     </table>
-    
-    <autocomplete ng-model="brand" data="brands"></autocomplete>
-    <autocomplete ng-model="model" data="models"></autocomplete>
-    <autocomplete ng-model="size" data="sizes"></autocomplete>
-    <autocomplete ng-model="purpose" data="purposes"></autocomplete>
 
+    <autocomplete ng-model="brand" data="brands" id="brand" attr-placeholder="Enter Brand" click-activation="true"></autocomplete>
+    <autocomplete ng-model="model" data="models" attr-placeholder="Enter Model" click-activation="true"></autocomplete>
+    <autocomplete ng-model="size" data="sizes" attr-placeholder="Enter Size" click-activation="true"></autocomplete>
+    <autocomplete ng-model="purpose" data="purposes" attr-placeholder="Enter Purpose" click-activation="true"></autocomplete>
+
+    <input type="number" ng-model="price" min="0" placeholder="Rental Price"></br>
+    <input type="number" ng-model="CCs" min="0" placeholder="CCs"></br>
+
+    <h3>ABS</h3>
+    <label>
+        <input type="radio" ng-model="abs" value="1">
+        Yes
+    </label><br/>
+
+    <label>
+        <input type="radio" ng-model="abs" value="0">
+        No
+    </label><br/>
+
+    <h3>Seating Capacity</h3>
+    <label>
+        <input type="radio" ng-model="capacity" value="1">
+        1
+    </label><br/>
+
+    <label>
+        <input type="radio" ng-model="caoacity" value="2">
+        2
+    </label><br/>
+
+    <button class="btn btn-primary" ng-disabled="!brand || !model || !model || !purpose || !price || !CCs || !abs || !capacity"
+        ng-click="addMotorcycle()">
+            Add Motorcycyle
+    </button>
 </div>

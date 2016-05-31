@@ -34,7 +34,7 @@ module.exports = function (app) {
         });
 
     });
-    
+
     app.get('/api/motorcycles', function (req, res) {
         var dbConn = new sql.Connection(config);
         dbConn.connect().then(function () {
@@ -54,7 +54,44 @@ module.exports = function (app) {
         });
 
     });
-    
+
+    app.post('/api/motorcycles', function (req, res) {
+        var rentalPrice = req.body.rentalPrice;
+        var sizeName = req.body.sizeName;
+        var brandName = req.body.brandName;
+        var purposeName = req.body.purposeName;
+        var modelName = req.body.modelName;
+        var CCs = req.body.CCs;
+        var SeatingCapacity = req.body.SeatingCapacity;
+        var ABS = req.body.ABS;
+
+        var dbConn = new sql.Connection(config);
+        dbConn.connect().then(function () {
+            var request = new sql.Request(dbConn);
+            request.input('rentalPrice', sql.Numeric(7, 2), rentalPrice);
+            request.input('sizeName', sql.VarChar(30), sizeName);
+            request.input('brandName', sql.VarChar(30), brandName);
+            request.input('purposeName', sql.VarChar(30), purposeName);
+            request.input('modelName', sql.VarChar(30), modelName);
+            request.input('CCs', sql.Int, CCs);
+            request.input('SeatingCapacity', sql.TinyInt, SeatingCapacity);
+            request.input('ABS', sql.TinyInt, ABS);
+
+            request.execute("uspNewMotorcycle").then(function (recordSet) {
+                console.log(recordSet);
+                dbConn.close();
+                res.json(recordSet);
+            }).catch(function (err) {
+                console.log(err);
+                dbConn.close();
+                res.send(err);
+            });
+        }).catch(function (err) {
+            console.log(err);
+            res.send(err);
+        });
+    });
+
     app.post('/api/incidents', function (req, res) {
         var numRows = req.body.numRows;
         var dbConn = new sql.Connection(config);
@@ -75,7 +112,6 @@ module.exports = function (app) {
             res.send(err);
         });
     });
-
 
     function insertRow() {
         var dbConn = new sql.Connection(config);
